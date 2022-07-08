@@ -1,10 +1,10 @@
 {
   "name": "lsavr",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +21,15 @@
     "request-ip": "^2.2.0",
     "serve-favicon": "^2.5.0",
     "valid-url": "^1.0.9"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yevgeniyakimenko/lsavr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yevgeniyakimenko/lsavr/issues"
+  },
+  "homepage": "https://github.com/yevgeniyakimenko/lsavr#readme",
+  "description": ""
 }
