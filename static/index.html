@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LSavr - Link Saver</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="/index.css">
+  <script defer src="index.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container is-max-desktop">
+      <nav class="level is-mobile m-4">
+        <div class="level-left">
+          <div class="level-item">
+            <div>
+              <span class="icon-text">
+                <a href="/">
+                  <span class="icon is-medium has-text-dark">
+                    <ion-icon name="link-sharp" size="large"></ion-icon>
+                  </span>
+                </a>
+                
+              </span>
+
+              <span class="title has-text-weight-semibold">
+                <a href="/" class="has-text-primary">LinkSaver</a>
+              </span>
+
+              <span class="heading">
+                Share links on your WiFi
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="level-right">
+          <div class="level-item">
+            <p class="faq-icon">
+              <a class="faq">
+                <span class="icon-text has-text-grey-darker" title="FAQ">
+                  <span class="icon is-medium">
+                    <ion-icon name="help-outline"></ion-icon>
+                  </span>
+                </span>
+              </a>
+            </p>
+          </div>
+
+          &nbsp;
+
+          <div class="level-item">
+            <p class="trash-icon">
+              <a class="delete-all">
+                <span class="icon-text has-text-grey-darker" title="Delete all links">
+                  <span class="icon is-medium">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </span>
+                </span>
+              </a>
+            </p>
+          </div>
+
+          &nbsp;
+
+          <div class="level-item">
+            <p>
+              <a href="https://github.com/yevgeniyakimenko" class="github">
+                <span class="icon-text has-text-grey-darker" title="Source code on GitHub">
+                  <span class="icon is-medium">
+                    <ion-icon name="logo-github"></ion-icon>
+                  </span>
+                </span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section p-0 mb-4">
+      <div class="container is-max-desktop">
+        <div class="column">
+          <div class="card ">
+            <div class="card-content">
+              <div class="field">
+                <label class="label link-label ">
+                  Link
+                </label>
+                <div class="control">
+                  <input class="input link-input " type="url" maxlength="160"
+                    placeholder="Your link here">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label description-label ">Description</label>
+                <div class="control">
+                  <textarea class="textarea link-textarea " name="" id=""
+                    maxlength="512"
+                    placeholder="Add your description for the link"></textarea>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <button class="button new-link is-primary my-2">
+                    Share link
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section p-0">
+      <div class="container is-max-desktop">
+        <div class="column link-list">
+          <div class="message  is-hidden">
+            <div class="message-header has-background-primary">
+              <button class="button edit-link-button is-text mr-4">
+                <span class="icon">
+                  <ion-icon size="large" name="create-outline"></ion-icon>
+                </span>
+              </button>
+
+              <p class="link-para has-text-weight-normal has-text-dark">
+              </p>
+
+              <button class="delete delete-link-button ml-4"
+                aria-label="delete"></button>
+            </div>
+
+            <div class="message-body has-background-grey-lighter p-4">
+              <p class="description">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal edit-modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Edit your link</p>
+          <button class="delete has-background-grey close-edit-modal"></button>
+        </header>
+
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label ">
+              Link
+            </label>
+            <div class="control">
+              <input class="input link-edit-input " type="url"
+                placeholder="Your link here">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label ">Description</label>
+            <div class="control">
+              <textarea class="textarea description-edit-textarea " name=""
+                id=""
+                placeholder="Add your description for the link"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <footer class="modal-card-foot">
+          <button class="button edit-save-button is-primary">
+            Save
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal delete-modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Delete your link</p>
+          <button
+            class="delete has-background-grey close-delete-modal"></button>
+        </header>
+        <section class="modal-card-body">
+        </section>
+        <footer class="modal-card-foot ">
+          <button class="button delete-confirm-button is-danger ">
+            Delete
+          </button>
+          <div class="content ">
+            <p class="has-text-danger ">Warning: this cannot be undone!</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal faq-modal">
+      <div class="modal-background">
+
+      </div>
+
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">FAQ</p>
+        </header>
+        <section class="modal-card-body">
+          <div class="block">
+            <p class="title">
+              When <span class="is-underlined">NOT</span> to use LinkSaver?
+            </p>
+
+            <div class="content">
+              <ul>
+                <li>
+                  <strong>When you need to share sensitive information.</strong>
+                  Although the database uses cryptographic encryption to store
+                  your data, there is no guarantee against data loss, hacking or 
+                  extortion. Use this service at your own risk.
+                </li>
+
+                <li>
+                  <strong>When you are using a VPN service.</strong> Your
+                  endpoint IP address may be shared with an unknown number of other 
+                  VPN users.
+                </li>
+
+                <li>
+                  <strong>If your Internet Service Provider changes your public IP
+                  address.</strong> Once your public IP address changes, you
+                  will no longer be able to see your saved links. For this reason,
+                  it is probably a good idea to delete all your links if you are
+                  not planning on using them in the near future.
+                </li>
+
+                <li>
+                  <strong>If you need to share more than 50 links at once.</strong>
+                  LinkSaver is for personal, small-scale use only. If you need to
+                  share larger amounts of data, please consider using alternative
+                  services.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="block">
+            <p class="title">
+              How does it work?
+            </p>
+
+            <p>
+              Usually, devices connected to the same WiFi or LAN home network
+              share the same external (public) IP address. This allows LinkSaver
+              to show the same links to all users whose network requests come from 
+              the same public IP address.
+            </p>
+
+            <div class="box">
+              <figure class="image image is-2by1">
+                <img src="/network.png">
+              </figure>
+            </div>
+
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+
+          <div class="block">
+            <p class="title">
+
+            </p>
+
+            <p>
+
+            </p>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success faq-close">Close</button>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal delete-all-modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Delete <span class="is-underlined">ALL</span> Links</p>
+        </header>
+        <section class="modal-card-body">
+          <div class="block">
+            <p class="has-text-danger has-text-weight-semibold">Warning: This cannot be undone!</p>
+          </div>
+
+          <div class="block is-danger">
+            <p>Please confirm that you understand and agree:</p>
+          <label class="checkbox has-text-danger">
+            <input type="checkbox" class="delete-all-checkbox">
+            Yes, I want to delete all my links
+          </label>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-danger delete-all-button">Delete ALL links</button>
+          <button class="button cancel-delete-all">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal delete-message-modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <div class="level-item">
+                <p class="delete-message-para">
+
+                </p>
+              </div>
+            </div>
+
+            <div class="level-right">
+              <p class="level-item"><button class="delete delete-message-close"></button></p>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
