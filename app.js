@@ -55,7 +55,7 @@ const linkIdJoiSchema = Joi.string().hex().min(24).max(24);
 
 const app = express();
 app.use(require('helmet')());
-app.use(express.static("static"));
+app.use(express.static("static"), { dotfiles: 'allow' });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
