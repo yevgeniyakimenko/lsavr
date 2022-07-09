@@ -230,5 +230,5 @@ api.post('/deleteall', (req, res) => {
   key: fs.readFileSync(''),
   cert: fs.readFileSync('')
 }; */
-http.createServer(app).listen(80, () => console.log('server started'));
+http.createServer(app).listen(8080, () => console.log('server started'));
 /* https.createServer(options, app).listen(443, () => console.log(`secure server started`)); */
