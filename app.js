@@ -1,4 +1,5 @@
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -55,7 +56,7 @@ const linkIdJoiSchema = Joi.string().hex().min(24).max(24);
 
 const app = express();
 app.use(require('helmet')());
-app.use(express.static("static"), { dotfiles: 'allow' });
+app.use(express.static("static", { dotfiles: 'allow' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
@@ -225,9 +226,9 @@ api.post('/deleteall', (req, res) => {
   });
 });
 
-const options = {
+/* const options = {
   key: fs.readFileSync(''),
   cert: fs.readFileSync('')
-};
+}; */
 http.createServer(app).listen(80, () => console.log('server started'));
-https.createServer(options, app).listen(443, () => console.log(`secure server started`))
+/* https.createServer(options, app).listen(443, () => console.log(`secure server started`)); */
