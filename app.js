@@ -55,7 +55,64 @@ const linkIdJoiSchema = Joi.string().hex().min(24).max(24);
 
 
 const app = express();
-app.use(require('helmet')());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    "block-all-mixed-content": true,
+    "upgrade-insecure-requests": true,
+    directives: {
+      "default-src": [
+          "'self'"
+      ],
+      "base-uri": "'self'",
+      "font-src": [
+          "'self'",
+          "https:",
+          "data:"
+      ],
+      "frame-ancestors": [
+          "'self'"
+      ],
+      "img-src": [
+          "'self'",
+          "data:"
+      ],
+      "object-src": [
+          "'none'"
+      ],
+      "script-src": [
+          "'self'",
+          "https://cdnjs.cloudflare.com",
+          "https://unpkg.com/",
+          ""
+      ],
+      "script-src-attr": "'none'",
+      "style-src": [
+          "'self'",
+          "https://cdnjs.cloudflare.com",
+          "https://cdn.jsdelivr.net/",
+          "https://unpkg.com/"
+      ],
+    },
+  }),
+  helmet.dnsPrefetchControl({
+      allow: true
+  }),
+  helmet.frameguard({
+      action: "deny"
+  }),
+  helmet.hidePoweredBy(),
+  helmet.hsts({
+      maxAge: 31536000
+  }),
+  helmet.ieNoOpen(),
+  helmet.noSniff(),
+  helmet.referrerPolicy({
+      policy: [ "origin", "unsafe-url" ]
+  }),
+  helmet.xssFilter()
+);
+
 app.use(express.static("static", { dotfiles: 'allow' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -226,10 +283,15 @@ api.post('/deleteall', (req, res) => {
   });
 });
 
+const httpApp = express();
+httpApp.get("*", function(req, res, next) {
+  res.redirect("https://" + req.headers.host + req.path);
+});
+http.createServer(httpApp).listen(8080, () => console.log('http server started'));
+
 const options = {
   key: fs.readFileSync(process.env.KEY),
   cert: fs.readFileSync(process.env.CERT),
   ca: fs.readFileSync(process.env.CA)
 };
-http.createServer(app).listen(8080, () => console.log('server started'));
 https.createServer(options, app).listen(8443, () => console.log(`secure server started`));
