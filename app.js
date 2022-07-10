@@ -89,7 +89,7 @@ app.use(
           "https://cdn.jsdelivr.net"
       ],
       "script-src-attr": [
-        "https://unpkg.com"
+        "'none'"
       ],
       "style-src": [
           "'self'",
