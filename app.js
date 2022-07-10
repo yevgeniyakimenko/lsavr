@@ -136,6 +136,7 @@ app.use('/api/v1', api);
 
 api.get('/links', (req, res) => {
   const ip = requestIp.getClientIp(req);
+  console.log('incoming ip:', ip);
   const ipHash = createHash('sha512').update(ip + pepper).digest('hex');
   LinkModel.find(
     { ipHash }, 
