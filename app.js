@@ -84,15 +84,15 @@ app.use(
       "script-src": [
           "'self'",
           "https://cdnjs.cloudflare.com",
-          "https://unpkg.com/",
-          ""
+          "https://unpkg.com",
+          "https://cdn.jsdelivr.net"
       ],
       "script-src-attr": "'none'",
       "style-src": [
           "'self'",
           "https://cdnjs.cloudflare.com",
-          "https://cdn.jsdelivr.net/",
-          "https://unpkg.com/"
+          "https://cdn.jsdelivr.net",
+
       ],
     },
   }),
