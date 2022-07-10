@@ -92,7 +92,7 @@ app.use(
           "'self'",
           "https://cdnjs.cloudflare.com",
           "https://cdn.jsdelivr.net",
-
+          "https://unpkg.com"
       ],
     },
   }),
