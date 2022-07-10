@@ -80,7 +80,8 @@ app.use(
           "https://unpkg.com"
       ],
       "object-src": [
-          "'none'"
+          "data:",
+          "unsafe-eval"
       ],
       "script-src": [
           "'self'",
