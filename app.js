@@ -86,8 +86,7 @@ app.use(
           "'self'",
           "https://cdnjs.cloudflare.com",
           "https://unpkg.com",
-          "https://cdn.jsdelivr.net",
-          "sha256-NBfyYgxoWTkJ9SyHWLNVIq8UkKGvsaGPAaGmNMpVMSA="
+          "https://cdn.jsdelivr.net"
       ],
       "script-src-attr": [
         "'none'"
@@ -96,7 +95,8 @@ app.use(
           "'self'",
           "https://cdnjs.cloudflare.com",
           "https://cdn.jsdelivr.net",
-          "https://unpkg.com"
+          "https://unpkg.com",
+          "sha256-NBfyYgxoWTkJ9SyHWLNVIq8UkKGvsaGPAaGmNMpVMSA="
       ],
       "connect-src": [
         "'self'",
