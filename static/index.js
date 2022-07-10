@@ -177,7 +177,6 @@ document.querySelector('main').addEventListener('click', (event) => {
   }
 
   messageToEdit = event.target.closest('.message');
-  console.log('message to edit id', messageToEdit.linkId);
   let link;
   if (messageToEdit.isLink) {
     link = messageToEdit.querySelector('a').innerHTML.trim();

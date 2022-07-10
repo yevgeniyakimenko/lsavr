@@ -76,7 +76,8 @@ app.use(
       ],
       "img-src": [
           "'self'",
-          "data:"
+          "data:",
+          "https://unpkg.com"
       ],
       "object-src": [
           "'none'"
@@ -87,7 +88,9 @@ app.use(
           "https://unpkg.com",
           "https://cdn.jsdelivr.net"
       ],
-      "script-src-attr": "'none'",
+      "script-src-attr": [
+        "https://unpkg.com"
+      ],
       "style-src": [
           "'self'",
           "https://cdnjs.cloudflare.com",
@@ -109,7 +112,7 @@ app.use(
   helmet.ieNoOpen(),
   helmet.noSniff(),
   helmet.referrerPolicy({
-      policy: [ "origin", "unsafe-url" ]
+      policy: [ "strict-origin" ]
   }),
   helmet.xssFilter()
 );
