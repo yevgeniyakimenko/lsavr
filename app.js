@@ -81,7 +81,8 @@ app.use(
       ],
       "object-src": [
           "data:",
-          "unsafe-eval"
+          "unsafe-eval",
+          "https://unpkg.com"
       ],
       "script-src": [
           "'self'",
