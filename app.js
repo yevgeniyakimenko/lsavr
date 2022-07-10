@@ -226,9 +226,10 @@ api.post('/deleteall', (req, res) => {
   });
 });
 
-/* const options = {
-  key: fs.readFileSync(''),
-  cert: fs.readFileSync('')
-}; */
+const options = {
+  key: fs.readFileSync(process.env.KEY),
+  cert: fs.readFileSync(process.env.CERT),
+  ca: fs.readFileSync(process.env.CA)
+};
 http.createServer(app).listen(8080, () => console.log('server started'));
-/* https.createServer(options, app).listen(443, () => console.log(`secure server started`)); */
+https.createServer(options, app).listen(8443, () => console.log(`secure server started`));
