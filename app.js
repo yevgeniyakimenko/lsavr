@@ -99,6 +99,9 @@ app.use(
           "https://cdn.jsdelivr.net",
           "https://unpkg.com"
       ],
+      "connect-src": [
+        "https://unpkg.com"
+      ]
     },
   }),
   helmet.dnsPrefetchControl({
