@@ -122,7 +122,7 @@ app.use(
   helmet.xssFilter()
 );
 
-app.use(express.static(process.env.STATIC, { dotfiles: 'allow' }));
+app.use(express.static(path.join(__dirname, 'static'), { dotfiles: 'allow' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
