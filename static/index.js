@@ -143,6 +143,7 @@ document.querySelector('button.new-link').addEventListener('click', (event) => {
   })
 });
 
+// Clipboard Button
 document.querySelector('main').addEventListener('click', (event) => {
   const clipboardBtn = event.target.closest('button.clipboard-button');
   if (!clipboardBtn) {
@@ -150,10 +151,11 @@ document.querySelector('main').addEventListener('click', (event) => {
   }
 
   const message = event.target.closest('.message');
-  const linkText = message.querySelector('.link-para').innerHTML;
-
-  navigator.clipboard.writeText(linkText).then(() => {
-    console.log('clipboard set successfully');
+  const linkPara = message.querySelector('.link-para');
+  const anchor = linkPara.querySelector('a');
+  const textToCopy = anchor ? anchor : linkPara.innerHTML;
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    console.log('copied to successfully');
   }, () => {
     console.log('copy to clipboard failed');
   });
