@@ -143,9 +143,26 @@ document.querySelector('button.new-link').addEventListener('click', (event) => {
   })
 });
 
+document.querySelector('main').addEventListener('click', (event) => {
+  const clipboardBtn = event.target.closest('button.clipboard-button');
+  if (!clipboardBtn) {
+    return;
+  }
+
+  const message = event.target.closest('.message');
+  const linkText = message.querySelector('.link-para').innerHTML;
+
+  navigator.clipboard.writeText(linkText).then(() => {
+    console.log('clipboard set successfully');
+  }, () => {
+    console.log('copy to clipboard failed');
+  });
+});
+
 // Delete button
 document.querySelector('main').addEventListener('click', (event) => {
-  if (!(event.target.tagName === 'BUTTON' && event.target.classList.contains('delete-link-button'))) {
+  const closeBtn = event.target.closest('button.delete-link-button');
+  if (!closeBtn) {
     return;
   }
 
@@ -155,12 +172,18 @@ document.querySelector('main').addEventListener('click', (event) => {
   }
 
   const newCard = messageToEdit.cloneNode(true);
+
+  const copyBtn = newCard.querySelector('button.clipboard-button');
+  if (copyBtn && copyBtn.parentNode) {
+    copyBtn.parentNode.removeChild(copyBtn);
+  }
+
   const editBtn = newCard.querySelector('button.edit-link-button');
   if (editBtn && editBtn.parentNode) {
     editBtn.parentNode.removeChild(editBtn);
   }
 
-  const deleteBtn = newCard.querySelector('button.delete');
+  const deleteBtn = newCard.querySelector('button.delete-link-button');
   if (deleteBtn && deleteBtn.parentNode) {
     deleteBtn.parentNode.removeChild(deleteBtn);
   }

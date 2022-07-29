@@ -127,19 +127,30 @@
     <section class="section p-0">
       <div class="container is-max-desktop">
         <div class="column link-list">
-          <div class="message  is-hidden">
+          <div class="message is-hidden">
             <div class="message-header has-background-primary">
-              <button class="button edit-link-button is-text mr-4">
+              <button class="button clipboard-button is-text mr-4">
                 <span class="icon">
-                  <ion-icon size="large" name="create-outline"></ion-icon>
+                  <ion-icon size="large" name="copy-outline"></ion-icon>
                 </span>
               </button>
 
               <p class="link-para has-text-weight-normal has-text-dark">
               </p>
 
-              <button class="delete delete-link-button ml-4"
-                aria-label="delete"></button>
+              <div class="buttons">
+                <button class="button edit-link-button is-text ml-4">
+                  <span class="icon">
+                    <ion-icon size="large" name="create-outline"></ion-icon>
+                  </span>
+                </button>
+                <button class="button delete-link-button is-text">
+                  <span class="icon">
+                    <ion-icon size="large" name="close"></ion-icon>
+                  </span>
+                </button>
+              </div>
+              
             </div>
 
             <div class="message-body has-background-grey-lighter p-4">
